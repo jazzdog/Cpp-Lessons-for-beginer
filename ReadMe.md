@@ -3,12 +3,10 @@
 ##Class 1
 >1. print
 >> * 列印 printf 的使用
-
 >> * 了解資料型態(data type)
-
 >> * 知道[值]、[記憶體大小]以及[位址]
 
-> 2. for/loop
+>2. for/loop
 >> * 了解for 的使用方式
 
 >3. while
