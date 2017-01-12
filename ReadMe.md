@@ -6,6 +6,7 @@
 3. while
 4. switch
 5. homework
+
 ##Class 2
 1. function return
 2. pointer1
@@ -13,6 +14,7 @@
 4. pointer3
 5. pointer4
 6. Homework
+
 ##Class 3
 1. function parameters
 2. function default value
