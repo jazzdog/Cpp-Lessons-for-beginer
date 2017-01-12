@@ -1,5 +1,5 @@
 ========================================================================
-    CONSOLE APPLICATION : Win32EmptyConsole Project Overview
+   新手的C++課程
 ========================================================================
 
 AppWizard has created this Win32EmptyConsole application for you.
