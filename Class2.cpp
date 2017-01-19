@@ -31,9 +31,12 @@ void goClass2(int nExpNumber)
 			C2_ex5_Pointer4();
 			break;
 		case 6:
+			C2_ex6_Pointer5();
+			break;
+		case 7:
 			printLottery();
 				break;
-		case 7:
+		case 8:
 			printLottery_Homework();
 			break;
 		default:
@@ -233,17 +236,17 @@ void C2_ex5_Pointer4()
 
 	在看變數宣告時,如同運算式的推演過程,必須遵守C程式語言對*()[]的優先權定義。接下來請讀者背誦下面的口訣
 
-	* 看見[]就說array[] of
-	* 看見*就說pointer to
-	* 看見變數後面的()就說function() returning
+	* 看見[]就說array[] of (一個陣列裡面有...)
+	* 看見*就說pointer to (一個指標指向...)
+	* 看見變數後面的()就說function() returning (一個函式回傳...)
 
 	上述口訣配合*()[]的優先權,依序找出其執行的順序,每看到運算符號就把這幾句口訣念出來。因此變數的意義如下面範例
 
-	char *x; // x: a pointer to char
-	char x[3]; // x: an array[3] of char
-	char x(); // x: a function() returning char
-	char *x[3]; // x: an array[3] of pointer to char
-	char (*x)[3]; // x: a pointer to array[3] of char
+	char *x; // x: a pointer to char (一個指標指向....char)
+	char x[3]; // x: an array[3] of char (一個陣列裡面有....char)
+	char x(); // x: a function() returning char (一個函式回傳...char)
+	char *x[3]; // x: an array[3] of pointer to char (一個陣列裡面有...一個指標指向....char)
+	char (*x)[3]; // x: a pointer to array[3] of char (一個指標指向...一個陣列裡面有...char)
 	char **x; // x: a pointer to pointer to char
 	char *x(); // x: a function() returning pointer to char
 	char *x()[3]; // x: a function() returning array[3] of pointer to char
@@ -251,10 +254,60 @@ void C2_ex5_Pointer4()
 	char (*x())(); // x: a function() returning pointer to function() returning char
 	char (*(*x)[])(int, int); // x: a pointer to array[] of pointer to function(int,int) returning char
 
-	讀者在閱讀上面範例時,千萬不要把這些英文翻成中文!
-	英文文法是後面修飾前面,比中文更能確切表達文句的意義,
-	因此在處理這些複雜宣告時,用英文去了解即可。
 	*/
+}
+
+void C2_ex6_Pointer5()
+{
+	/*
+				[0]---->[0][0]='A', [0][1]='B'
+	the2DArray
+				[1]---->[1][0]=2, [1][1]=4, [1][2]=6, ....
+	*/
+	char the2DArray[2][10] = { {'A','B'}, {2,4,6,8,10,12,14,16,18,20} };
+	char* ptheArray_D0 = the2DArray[0];
+	char* ptheArray_D1 = the2DArray[1];
+	char* pPointArray[2] = { ptheArray_D0, ptheArray_D1 };
+	char** ppPointToPointArray = pPointArray;
+
+	printf("列印陣列 the2DArray[2][10]....\n");
+	for (int nD1 = 0; nD1 < 2; nD1++)
+	{
+		for (int nD2 = 0; nD2 < 10; nD2++)
+			printf("the2DArray[%d][%d]=%d\n", nD1, nD2, the2DArray[nD1][nD2]);
+	}
+	printf("列印指標 ptheArray_D0 與 ptheArray_D1....\n");
+	for (int nD1 = 0; nD1 < 2; nD1++)
+	{
+		for (int nD2 = 0; nD2 < 10; nD2++)
+		{
+			if (nD1==0)
+				printf("ptheArray_D0[%d][%d]=%d (%c)\n", nD1, nD2, *(ptheArray_D0 + nD2), *(ptheArray_D0 + nD2));
+			if (nD1 == 1)
+				printf("ptheArray_D1[%d][%d]=%d\n", nD1, nD2, *(ptheArray_D1 + nD2));
+		}
+	}
+
+	printf("列印陣列指標 pPointArray....\n");
+	for (int nD1 = 0; nD1 < 2; nD1++)
+	{
+		for (int nD2 = 0; nD2 < 10; nD2++)
+		{
+			
+			printf("pPointArray[%d][%d]=%d\n", nD1, nD2, *(pPointArray[nD1] + nD2));
+		}
+	}
+
+	printf("列印雙重指標 ppPointToPointArray....\n");
+	for (int nD1 = 0; nD1 < 2; nD1++)
+	{
+		for (int nD2 = 0; nD2 < 10; nD2++)
+		{
+
+			printf("pPointArray[%d][%d]=%d\n", nD1, nD2, *(*(ppPointToPointArray+nD1) + nD2));
+		}
+	}
+
 }
 
 void printLottery()
@@ -262,7 +315,18 @@ void printLottery()
 	//是否可以用統一發票獎項來替代?為什麼?
 
 	setlocale(LC_ALL, ""); //設定中文
-	wchar_t aryLty1051104[2][10] = { { L"第1051104期" }, { 16, 14, 22, 23, 30, 31 } };
+	//wchar_t aryLty1051104[2][10] = { { L"第1051104期" }, { 16, 14, 22, 23, 30, 31 } };
+
+	//要顯示寬字元(wchar_t)字串，前方要用L""來表示
+	wchar_t aryLty1051104[2][10] = { { 0 }, { 0 } };
+	memcpy_s(aryLty1051104[0], 10 * 2, L"第1051104期", sizeof(L"第1051104期"));
+	aryLty1051104[1][0] = 16;
+	aryLty1051104[1][1] = 14;
+	aryLty1051104[1][2] = 22;
+	aryLty1051104[1][3] = 23;
+	aryLty1051104[1][4] = 30;
+	aryLty1051104[1][5] = 31;
+
 	wchar_t aryLty1051111[2][10] = { { L"第1051111期" }, { 2, 8, 25, 29, 30, 41 } };
 	wchar_t aryLty1051118[2][10] = { { L"第1051118期" }, { 3, 14, 17, 19, 20, 31 } };
 	wchar_t aryLty1051125[2][10] = { { L"第1051125期" }, { 18, 20, 22, 27, 31, 35 } };

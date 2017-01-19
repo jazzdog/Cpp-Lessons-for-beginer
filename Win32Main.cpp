@@ -15,8 +15,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 	goClass1(0);
-	goClass2(0);
-	goClass3(1);
+	goClass2(8);
+	goClass3(0);
 
 
 	fgets(caDummy,4,stdin);

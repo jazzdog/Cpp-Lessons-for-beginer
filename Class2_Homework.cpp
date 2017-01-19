@@ -12,7 +12,8 @@ void printLottery_Homework()
 	//wchar_t aryLty1051104[2][10] = { { L"第1051104期" }, { 16, 14, 22, 23, 30, 31 } };
 	wchar_t* pLty101104_Title = (wchar_t*)malloc(10 * 2);
 	memset(pLty101104_Title, 0, 10 * 2);
-	pLty101104_Title = L"第1051104期";
+	memcpy_s(pLty101104_Title, 10 * 2, L"第1051104期", sizeof(L"第1051104期"));
+	//pLty101104_Title = L"第1051104期"; //<==錯誤 會將pLty101104_Title原來所指的位置更換，L"第1051104期"就如同一個(wchar_t*)
 	wchar_t* pLty101104_Numbers = (wchar_t*)malloc(10 * 2);
 	memset(pLty101104_Numbers, 0, 10 * 2);
 	*pLty101104_Numbers = 16;
@@ -33,7 +34,8 @@ void printLottery_Homework()
 	//wchar_t aryLty1051111[2][10] = { { L"第1051111期" }, {  2,  8, 25, 29, 30, 41 } };
 	wchar_t* pLty101111_Title = (wchar_t*)malloc(10 * 2);
 	memset(pLty101111_Title, 0, 10 * 2);
-	pLty101111_Title = L"第1051111期";
+	memcpy_s(pLty101111_Title, 10 * 2, L"第1051111期", sizeof(L"第1051111期"));
+	//pLty101111_Title = L"第1051111期";
 	wchar_t* pLty101111_Numbers = (wchar_t*)malloc(10 * 2);
 	memset(pLty101111_Numbers, 0, 10 * 2);
 	*pLty101111_Numbers = 2;

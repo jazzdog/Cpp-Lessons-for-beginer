@@ -22,6 +22,7 @@ void C2_ex2_Pointer1();
 void C2_ex3_Pointer2(int nArraySize);
 void C2_ex4_Pointer3();
 void C2_ex5_Pointer4();
+void C2_ex6_Pointer5();
 void printLottery();
 void printLottery_Homework();
 
